@@ -1,4 +1,3 @@
-
 const { Item, Relasi, NomorWo, Realisasi, User, Schedule, Mobil, Solar } = require("../models")
 const { Op } = require("sequelize")
 let moment = require("moment")
@@ -21,17 +20,56 @@ class DatabaseController {
             })
     }
 
-    static addManyRealisasi(req, res) {
+    static async addManyRealisasi(req, res) {
+        // console.log(req.loggedUser.id, "teeeees");
         let aco = req.body
-        aco?.forEach(element => {
+        // console.log(aco, "==========");
+        try {
 
-        });
+            let result = await aco.forEach(element => {
+                NomorWo.findOne({
+                    where: {
+                        id: element.NomorWoId
+                    }
+                })
+                    .then(data => {
+                        let payload = {
+                            ScheduleId: data.ScheduleId,
+                            NomorWoId: data.id,
+                            noTm: element.noTm,
+                            RelasiId: data.RelasiId,
+                            ItemId: data.ItemId,
+                            tanggal: data.tanggal,
+                            UserId: req.loggedUser.id,
+                            kendala: element.kendala,
+                            so: element.so,
+                            shipment: element.shipment,
+                            bongkar: element.bongkar,
+                            noTiket: element.noTiket,
+                            volume: +element.volume,
+                            waktuMulai: element.waktuMulai,
+                            waktuSelesai: element.waktuSelesai,
+                            driver: element.driver,
+                            cipping: +element.cipping,
+                            split: +element.split,
+                            pasir: +element.pasir,
+                            semen: +element.semen,
+                            additiveCair: +element.additiveCair,
+                        }
+                        Realisasi.create(payload)
+                    })
+            })
+            res.status(200).json(result)
+        }
+        catch (err) {
+            res.status(404).json()
+        }
 
 
     }
 
     static addRealisasi(req, res) {
-        console.log("===================");
+        // console.log(req.loggedUser.id, "===================");
         NomorWo.findOne({
             where: {
                 id: req.body.NomorWoId
@@ -62,7 +100,7 @@ class DatabaseController {
                     additiveCair: +req.body.additiveCair,
                 }
 
-                console.log(payload, "===================");
+                // console.log(payload, "===================");
 
 
                 return Realisasi.create(
