@@ -9,77 +9,66 @@
 
 // let A = [2, 3, 2, 4, 5, 1, 3]
 let B = [
-    {
-        "nama": "Anton",
-        "Tahun": 2020,
-        "Jumlah": 500
+	{
+		nama: 'Anton',
+		Tahun: 2020,
+		Jumlah: 500,
+	},
+	{
+		nama: 'Budhi',
 
-    },
-    {
-        "nama": "Budhi",
+		Tahun: 2021,
+		Jumlah: 200,
+	},
 
-        "Tahun": 2021,
-        "Jumlah": 200
+	{
+		nama: 'Ari',
+		Tahun: 2020,
+		Jumlah: 300,
+	},
 
-    },
+	{
+		nama: 'Sonny',
+		Tahun: 2020,
+		Jumlah: 400,
+	},
 
-    {
-        "nama": "Ari",
-        "Tahun": 2020,
-        "Jumlah": 300
+	{
+		nama: 'Anton',
+		Tahun: 2021,
+		Jumlah: 400,
+	},
+	{
+		nama: 'Anton',
+		Tahun: 2022,
+		Jumlah: 400,
+	},
+	{
+		Tahun: 2022,
+		Jumlah: 400,
+	},
+	{
+		Tahun: 2022,
+		Jumlah: 400,
+	},
+	{
+		Tahun: 2021,
+		Jumlah: 400,
+	},
+];
 
-    },
+const hasil = [];
 
-    {
-        "nama": "Sonny",
-        "Tahun": 2020,
-        "Jumlah": 400
+B.map((item) => {
+	let penm = 0;
 
-    },
-
-    {
-        "nama": "Anton",
-        "Tahun": 2021,
-        "Jumlah": 400
-
-    },
-    {
-        "nama": "Anton",
-        "Tahun": 2022,
-        "Jumlah": 400
-
-    },
-    {
-        "Tahun": 2022,
-        "Jumlah": 400
-
-    },
-    {
-        "Tahun": 2022,
-        "Jumlah": 400
-
-    },
-    {
-        "Tahun": 2021,
-        "Jumlah": 400
-
-    },
-]
-
-const hasil = []
-
-
-B.map(item => {
-    let penm = 0
-
-    let index = hasil.findIndex(a => a.Tahun == item.Tahun)
-    if (index > -1) {
-        hasil[index].Jumlah += item.Jumlah
-    } else {
-        hasil.push(item)
-    }
-
-})
+	let index = hasil.findIndex((a) => a.Tahun == item.Tahun);
+	if (index > -1) {
+		hasil[index].Jumlah += item.Jumlah;
+	} else {
+		hasil.push(item);
+	}
+});
 // console.log(B);
 console.log(hasil);
 
@@ -106,11 +95,11 @@ console.log(hasil);
 console.log();
 // console.log(mergeData(B));
 
-let Aa = NaN
-let Bb = isNaN.Aa
-if (Aa == Bb) console.log("Yeeesss----")
-else console.log("Noo---");
-console.log(Aa, Bb);
+// let Aa = 1;
+// let Bb = 2;
+// let Cc = 3;
+// if (Cc == Bb || Cc !== Aa) console.log('ok');
+// console.log(Cc);
 
-let Cc = new Date()
-console.log(Cc);
+let a = new Date();
+console.log(a);

@@ -29,9 +29,8 @@ class DatabaseController {
 	}
 
 	static async addManyRealisasi(req, res) {
-		// console.log(req.loggedUser.id, "teeeees");
 		let aco = req.body;
-		// console.log(aco, "==========");
+
 		try {
 			let result = await aco.forEach((element) => {
 				NomorWo.findOne({
