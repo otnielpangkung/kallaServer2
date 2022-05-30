@@ -561,17 +561,21 @@ class DatabaseController {
 				res.status(404).json(err);
 			});
 	}
-	static getItem(req, res) {
-		Item.findAll({
-			include: [Realisasi],
-		})
-			.then((data) => {
-				res.status(200).json(data);
-			})
-			.catch((err) => {
-				res.status(404).json(err);
-			});
-	}
+	// static getItem(req, res) {
+	// 	console.log('Teeessss2');
+	// 	Item.findAll({
+	// 		include: [Realisasi],
+	// 	})
+	// 		.then((data) => {
+	// 			const startIndex = (req.query.page - 1) * req.query.limit;
+	// 			const endindex = req.query.page * req.query.limit;
+	// 			const result = data.slice(startIndex, endindex);
+	// 			res.status(200).json(result);
+	// 		})
+	// 		.catch((err) => {
+	// 			res.status(404).json(err);
+	// 		});
+	// }
 	static getItemUser(req, res) {
 		Item.findAll({
 			include: [Realisasi],
@@ -580,7 +584,11 @@ class DatabaseController {
 			},
 		})
 			.then((data) => {
-				res.status(200).json(data);
+				console.log(req.query.page, '-----------');
+				const startIndex = (req.query.page - 1) * req.query.limit;
+				const endIndex = req.query.page * req.query.limit;
+				const result = data.slice(startIndex, endIndex);
+				res.status(200).json(result);
 			})
 			.catch((err) => {
 				res.status(404).json(err);
@@ -633,8 +641,10 @@ class DatabaseController {
 			});
 	}
 	static getItem(req, res) {
+		console.log('==========================');
 		Item.findAll()
 			.then((data) => {
+				console.log(data);
 				res.status(200).json(data);
 			})
 			.catch((err) => {
